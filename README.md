@@ -1,10 +1,10 @@
 # linux-disk-check
-A script that checks if your Linux server is running out of disk space
+A script that checks and send email notifications if your Linux server is running out of disk space
 
 ## Usage
 Edit `MAX`, `EMAIL`, `SERV`, `O1`, `O2`... in *disk-check.sh* and upload to your Linux server, then config crontab to run the script daily.
 
-If you need to check more partitions, just add more block code in the script like this:
+If you need to check more partitions, just add more codes in the script like this:
 
 ```sh
 O3=/dev/vdc1
