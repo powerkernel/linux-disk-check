@@ -1,5 +1,5 @@
 # linux-disk-check
-A script that checks and send email notifications if your Linux server is running out of disk space
+A script that checks and send slack notifications if your Linux servers are running out of disk space
 
 ## Usage
-Use with mailgun template
+Just create a cronjob that runs the script daily
