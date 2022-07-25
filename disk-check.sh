@@ -1,18 +1,11 @@
 #!/bin/sh
 MAX=75
-NAME=$(hostname -s)
-TO=YOUR_EMAIL@DOMAIN.COM
-SERV=$(hostname -f)
+SERV=YOUR_SERVER_NAME
+SLACK=YOUR_SLACK_WEBHOOK_URL
 
 # now check disk 1
-D1=/dev/xvda1
+D1=/dev/sda1
 USE=`df -h |grep ${D1} | awk '{ print $5 }' | cut -d'%' -f1`
 if [ ${USE} -gt ${MAX} ] ; then
-	curl -s --user 'api:YOUR_MAILGUN_API' \
-		 https://api.mailgun.net/v3/YOUR_DOMAIN/messages \
-		 -F from=''${NAME}' <root@'${SERV}'>' \
-		 -F to=''${TO}'' \
-		 -F subject="$SERV is running out of disk space" \
-		 -F template='disk-space-warning' \
-		 -F h:X-Mailgun-Variables='{"hostname": "'${SERV}'", "disk":"'${D1}'", "percent":"'${USE}'"}'
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"Disk `'${D1}'` on `'${SERV}'` is running out of space (used '${USE}'%)"}' $SLACK
 fi
