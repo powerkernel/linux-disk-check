@@ -3,3 +3,5 @@ A script that checks and send slack notifications if your Linux servers are runn
 
 ## Usage
 Just create a cronjob that runs the script daily
+
+`0 0 * * * ~/scripts/disk-check.sh`
